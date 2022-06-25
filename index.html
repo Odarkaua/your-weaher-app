@@ -11,35 +11,46 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
-    <link ref="stylesheet" href="src/style.css" />
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container">
-      <h1 class="city">Zaporizhia</h1>
-      <ul>
-        <li>Saturday, 20:00</li>
-        <li>Cloudy</li>
-      </ul>
-    </div>
-    <div class="row">
-      <div class="col-4">
-        <img
-          src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-          alt="cloudy"
-        />
-        12 °C | °F
+      <div class="weather-app">
+        <h1 class="city" id="city">Zaporizhia</h1>
+        <div class="overview">
+          <ul>
+            <li id="date">Saturday, 20:00</li>
+            <li id="sky">Cloudy</li>
+          </ul>
+        </div>
       </div>
-      <div class="col-4">
-        <ul>
-          <li>Precipititation: 0%</li>
-          <li>Humidity: 55%</li>
-          <li>Wind: 2 km/h</li>
-        </ul>
+      <div class="row">
+        <div class="col-6 weather-now">
+          <img
+            src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+            alt="the weather icon"
+            id="icon"
+          />
+          <strong id="temperature">12</strong
+          ><span class="degree">°C | <a href="#">°F</a></span>
+        </div>
+        <div class="col-6 general-info">
+          <ul>
+            <li>Humidity: <span id="humidity">55</span>%</li>
+            <li>Wind: <span id="wind">2</span> km/h</li>
+          </ul>
+        </div>
       </div>
     </div>
-    <small>
-      <a href=""></a>
-    </small>
+    <div class="odarka">
+      <small>
+        <a href="https://github.com/Odarkaua/your-weaher-app"
+          >Open-source code</a
+        >
+        by Odarka
+      </small>
+    </div>
     <script src="src/app.js"></script>
   </body>
 </html>
