@@ -65,6 +65,14 @@ li {
   text-decoration: none;
 }
 
+.degree .active {
+  color: #202124;
+  cursor: default;
+}
+
+.degree .active:hover {
+  text-decoration: none;
+}
 .odarka {
   text-align: center;
 }

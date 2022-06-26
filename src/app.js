@@ -1,7 +1,6 @@
 function formatDate(timestamp) {
   //calculate the date
   let date = new Date(timestamp);
-  console.log(date);
   let hours = date.getHours();
   let minutes = date.getMinutes();
   if (minutes < 10) {
@@ -22,7 +21,6 @@ function formatDate(timestamp) {
 }
 
 function dailyTemperature(response) {
-  console.log(response.data);
   let temperatureToday = document.querySelector("#temperature");
   let cityNow = document.querySelector("#city");
   let skyNow = document.querySelector("#sky");
@@ -30,6 +28,8 @@ function dailyTemperature(response) {
   let humidityNow = document.querySelector("#humidity");
   let dateNow = document.querySelector("#date");
   let iconNow = document.querySelector("#icon");
+
+  celsiusTemperature = response.data.main.temp;
 
   temperatureToday.innerHTML = Math.round(response.data.main.temp);
   cityNow.innerHTML = response.data.name;
@@ -44,9 +44,48 @@ function dailyTemperature(response) {
   iconNow.setAttribute("alt", response.data.weather[0].description);
 }
 
-let apiKey = "b92d2cf75492770cfbea71584322a36b";
-let cityName = "London";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+function myWeather(cityName) {
+  let apiKey = "b92d2cf75492770cfbea71584322a36b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(dailyTemperature);
+}
 
-console.log(apiUrl);
-axios.get(apiUrl).then(dailyTemperature);
+function searchCity(event) {
+  event.preventDefault();
+  let searchCityNow = document.querySelector("#city-input");
+  myWeather(searchCityNow.value);
+}
+
+function displayFahrenheit(event) {
+  event.preventDefault();
+  let temperatureNow = document.querySelector("#temperature");
+
+  toCelsius.classList.remove("active");
+  toFahrenheit.classList.add("active");
+
+  let temperaureFahrenheit = (celsiusTemperature * 9) / 5 + 32;
+  temperatureNow.innerHTML = Math.round(temperaureFahrenheit);
+}
+
+function displayCelsius(event) {
+  event.preventDefault();
+  let tempNow = document.querySelector("#temperature");
+
+  toFahrenheit.classList.remove("active");
+  toCelsius.classList.add("active");
+
+  tempNow.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
+let formSearch = document.querySelector("#search-form");
+formSearch.addEventListener("submit", searchCity);
+
+let toFahrenheit = document.querySelector("#fahrenheit");
+toFahrenheit.addEventListener("click", displayFahrenheit);
+
+let toCelsius = document.querySelector("#celsius");
+toCelsius.addEventListener("click", displayCelsius);
+
+myWeather("Zaporizhia");
