@@ -20,6 +20,33 @@ function formatDate(timestamp) {
   return `${weekDay} ${hours}:${minutes}`;
 }
 
+function showForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class = "row">`;
+  let days = ["Thuesday", "Friday", "Saturday", "Sunday", "Monday"];
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `    <div class="col-2">
+            <div class="forecast-day">${day}</div>
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+              alt="the weather icon"
+              id="icon"
+            />
+            <div class="weather-forecast-temperature">
+              <span class="max-temperature">18°</span>
+              <span class="min-temperature">12°</span>
+            </div>
+          </div>  
+          `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function dailyTemperature(response) {
   let temperatureToday = document.querySelector("#temperature");
   let cityNow = document.querySelector("#city");
@@ -89,3 +116,4 @@ let toCelsius = document.querySelector("#celsius");
 toCelsius.addEventListener("click", displayCelsius);
 
 myWeather("Zaporizhia");
+showForecast();
