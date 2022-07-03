@@ -29,10 +29,25 @@
             />
           </div>
           <div class="col-md-3">
-            <input type="submit" value="Search" class="btn btn-primary w-100" />
+            <input
+              type="submit"
+              value="Search"
+              class="btn btn-outline-secondary w-100"
+            />
           </div>
         </div>
       </form>
+
+      <section>
+        <button
+          type="button"
+          class="btn btn-outline-secondary w-100"
+          id="find-my-place"
+        >
+          Find my place
+        </button>
+      </section>
+
       <div class="weather-app">
         <h1 class="city" id="city">Zaporizhia</h1>
         <div class="overview">
@@ -49,16 +64,12 @@
             alt="the weather icon"
             id="icon"
           />
-          <strong id="temperature">12</strong
-          ><span class="degree"
-            ><a href="#" class="active" id="celsius">°C</a> |
-            <a href="#" id="fahrenheit">°F</a></span
-          >
+          <strong id="temperature">12</strong><span class="degree">°C </span>
         </div>
         <div class="col-6 general-info">
           <ul>
             <li>Humidity: <span id="humidity">55</span>%</li>
-            <li>Wind: <span id="wind">2</span> km/h</li>
+            <li>Wind: <span id="wind">2</span> m/s</li>
           </ul>
         </div>
       </div>
